@@ -1,5 +1,5 @@
 const path = require('path');
-// const fs = require('fs');
+const fs = require('fs');
 const Koa = require('koa');
 const koaBody = require('koa-body');
 const koaStatic = require('koa-static');
@@ -28,8 +28,16 @@ app.use(async (ctx) => {
   if (ctx.request.method === 'POST') {
     console.log('ctx.request.body', ctx.request.body);
     console.log('ctx.request.body.description', ctx.request.body.description);
-    console.log('ctx.request.body.file', ctx.request.body.file);
+    // console.log('ctx.request.body.file', ctx.request.body.file);
     console.log('ctx.request.body.files', ctx.request.body.files);
+    // console.log('ctx.request.files', ctx.request.files.file);
+    const file = ctx.request.files.file;
+    const reader = fs.createReadStream(file.path);
+    const stream = fs.createWriteStream(path.join(dirPublic, Math.random().toString()));
+    reader.pipe(stream);
+    console.log('uploading %s -> %s', file.name, stream.path);
+
+    ctx.redirect('/');
     response.data = 'POST';
   } else {
     response.data = '<h1>test</h1>';

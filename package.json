@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "prestart": "npm install",
-    "start": "forever -a server.js",
+    "start": "forever server.js",
     "watch": "forever -a -w server.js",
     "lint": "eslint ."
   },
