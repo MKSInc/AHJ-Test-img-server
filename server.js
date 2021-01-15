@@ -43,7 +43,7 @@ app.use(async (ctx) => {
     response.data = '<h1>test</h1>';
   }
 
-  ctx.body = response;
+  ctx.body = JSON.stringify(response);
 });
 
 // eslint-disable-next-line no-console
