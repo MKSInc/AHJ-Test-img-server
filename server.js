@@ -37,7 +37,6 @@ app.use(async (ctx) => {
     reader.pipe(stream);
     console.log('uploading %s -> %s', file.name, stream.path);
 
-    ctx.redirect('/');
     response.data = 'POST';
   } else {
     response.data = '<h1>test</h1>';
